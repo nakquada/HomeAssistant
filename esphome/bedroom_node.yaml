@@ -1,0 +1,53 @@
+esphome:
+  name: bedroom_node
+  platform: ESP8266
+  board: d1_mini
+
+wifi:
+  networks:
+  - ssid: "Home"
+    password: "1234512345"
+  manual_ip:
+    static_ip: 10.0.0.33
+    gateway: 10.0.0.254
+    subnet: 255.255.255.0
+
+# Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Bedroom Node Fallback Hotspot"
+    password: "BvEyCVINCbzC"
+    
+substitutions:
+  # Modify variables based on your settings
+  hostname: 'Bedroom'
+  
+api:
+
+ota:
+  
+# Enable logging
+# logger:
+#   baud_rate: 0
+
+sensor:
+  - platform: dht
+    pin: D4
+    model: DHT11
+    temperature:
+      name: "$hostname Temperature"
+      filters:
+        - calibrate_linear:
+            # Map 0.0 (from sensor) to 0.0 (true value)
+            - 0.0 -> 0.0
+            - 10.0 -> 8
+            - 19.0 -> 16
+
+    humidity: 
+      name: "$hostname Humidity"
+      filters:
+        - calibrate_linear:
+            # Map 0.0 (from sensor) to 0.0 (true value)
+            - 0.0 -> 0.0
+            - 10.0 -> 12
+
+    update_interval: 5s

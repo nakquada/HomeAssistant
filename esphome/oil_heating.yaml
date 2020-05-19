@@ -1,0 +1,58 @@
+esphome:
+  name: oil_heating
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  networks:
+  - ssid: "Home"
+    password: "1234512345"
+  manual_ip:
+    static_ip: 10.0.0.22
+    gateway: 10.0.0.254
+    subnet: 255.255.255.0
+    
+# Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Oil Heating Fallback Hotspot"
+    password: "1234512345"  
+
+
+# Enable logging
+logger:
+
+ 
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+dallas:
+  - pin: GPIO14        
+sensor:
+  - platform: dallas
+    address: 0x01030797799B5E28
+    name: "Hot Water Temp"
+#    on_value_range:
+#      below: 35
+#      then:
+#        - switch.turn_on: switch1
+
+switch:
+  - platform: gpio
+    name: "Heating"
+    pin: GPIO12
+    id: relay
+    icon: mdi:radiator
+    
+binary_sensor:
+  - platform: gpio
+    pin: 
+      number: GPIO0
+      mode: INPUT_PULLUP
+    id: switch1
+    internal: true
+    on_press:
+       then:
+        - switch.toggle: relay

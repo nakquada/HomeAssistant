@@ -1,0 +1,120 @@
+esphome:
+  name: washing_machine
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  networks:
+  - ssid: "Home"
+    password: "1234512345"
+  manual_ip:
+    static_ip: 10.0.0.31
+    gateway: 10.0.0.254
+    subnet: 255.255.255.0
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Washing Machine Fallback Hotspot"
+    password: "1234512345"    
+    
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+substitutions:
+  plug_name: "washing_machine"
+  # Higher value gives lower watt readout
+  current_res: "0.00221"
+  # Lower value gives lower voltage readout
+  voltage_div: "925"
+  
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO13
+      inverted: True
+    name: "${plug_name}_button"
+    on_press:
+      - switch.toggle: switch1
+    internal: true
+    
+  - platform: template
+    name: "Washing Machine Running"
+    filters:
+      - delayed_off: 15s
+    lambda: |-
+      if (isnan(id(power).state)) {
+        return {};
+      } else if (id(power).state > 3) {
+        // Running
+        return true;
+      } else {
+        // Not running
+        return false;
+      } 
+      
+    
+output:
+  - platform: gpio
+    pin: GPIO15
+    id: relay
+  - platform: gpio
+    pin: GPIO02
+    inverted: True
+    id: led1
+
+status_led:
+  pin:
+    number: GPIO00
+    inverted: True
+
+switch:
+- platform: template
+  id: switch1
+  icon: mdi:washing-machine
+  optimistic: true
+  name: "Washing Machine"
+  turn_on_action:
+    - output.turn_on: relay
+    - output.turn_on: led1
+  turn_off_action:
+    - output.turn_off: relay
+    - output.turn_off: led1
+
+sensor:
+  - platform: hlw8012
+    sel_pin:
+      number: GPIO12
+      inverted: True
+    cf_pin: GPIO05
+    cf1_pin: GPIO14
+    current_resistor: ${current_res}
+    voltage_divider: ${voltage_div}
+    current:
+      name: "Washing Machine Current"
+      internal: true
+    voltage:
+      name: "Washing Machine Voltage"
+      internal: true
+    power:
+      name: "Washing Machine Power"
+      icon: mdi:flash-circle
+      id: power
+
+  - platform: total_daily_energy
+    name: "Washing Machine Daily Energy Use"
+    power_id: "power"
+    filters:
+        # Multiplication factor from W to kW is 0.001
+        - multiply: 0.001
+    unit_of_measurement: kWh
+    icon: mdi:clock-alert

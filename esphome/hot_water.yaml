@@ -1,0 +1,63 @@
+esphome:
+  name: immersion
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  networks:
+  - ssid: "Home"
+    password: "1234512345"
+  manual_ip:
+    static_ip: 10.0.0.23
+    gateway: 10.0.0.254
+    subnet: 255.255.255.0
+
+# Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Immersion Fallback Hotspot"
+    password: "1234512345"   
+
+# Enable logging
+# logger:
+
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: dht
+    pin: GPIO14
+    model: AM2302
+    temperature:
+      name: "Dining Room Temp"
+      filters:
+        - calibrate_linear:
+          # Map 0.0 (from sensor) to 0.0 (true value)
+          - 0.0 -> 0.0
+          - 25.0 -> 20
+    humidity: 
+      name: "Dining Room Humidity"
+    update_interval: 30s
+
+switch:
+  - platform: gpio
+    name: "Immersion"
+    pin: GPIO12
+    id: relay
+    icon: mdi:water-pump
+    
+binary_sensor:
+### Switch 1
+  - platform: gpio
+    pin: 
+      number: GPIO0
+      mode: INPUT_PULLUP
+    id: switch1
+    internal: true
+    name: "Immersion Relay"        
+    on_press:
+       then:
+        - switch.toggle: relay
+  
