@@ -1,0 +1,14 @@
+############### Automated Sunset/Sunrise Group #####################
+  automatic:
+    - light.kitchen_lamp
+    - switch.table_lamp
+    - switch.sitting_room_lamp
+    - light.office_lamp
+    - light.blaith_bedside_lamp
+    - light.terri_bedside_lamp
+    - light.pc_lights
+    - light.front_porch
+    - light.dining_room_lamp
+    - switch.yard_light
+    - light.office_small_lamp
+

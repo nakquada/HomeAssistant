@@ -1,0 +1,68 @@
+# Pioneer A/V Receiver (VSX-932)
+  - platform: onkyo
+    host: 10.0.0.10
+    name: Pioneer Receiver
+    receiver_max_volume: 190
+    sources:
+      Game: 'PS4'
+      BD: 'Bluray'
+      Strm-Box: 'Shield'
+      TV: 'TV'
+
+### Android TV (Shield etc)
+# NVidia Shield
+  - platform: androidtv
+    host: 10.0.0.6
+    name: Shield Android
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
+    exclude_unnamed_apps: true
+    apps:
+      com.amazon.tv.launcher: "Fire TV"
+      com.nvidia.tegrazone3:  "GameStream"
+      com.valvesoftware.steamlink: "Steam Link"
+      com.netflix.ninja: "Netflix"
+      com.google.android.tvlauncher: "Home"
+      com.amazon.amazonvideo.livingroom: "Amazon Prime"
+      com.google.android.youtube.tv: "YouTube"
+      com.plexapp.android: "Plex"
+      com.spotify.tv.android: "Spotify"
+      tv.twitch.android.app: "Twitch"
+      "kodi": "Kodi"
+
+# Amazon Fire TV 4K
+  - platform: androidtv
+    host: 10.0.0.7
+    name: Bedroom Android
+    adb_server_ip: 127.0.0.1
+    adb_server_port: 5037
+    exclude_unnamed_apps: true
+    apps:
+      com.amazon.tv.launcher: "Fire TV"
+      "kodi": "Kodi"
+      com.netflix.ninja: "Netflix"
+      com.google.android.tvlauncher: "Home"
+      com.amazon.amazonvideo.livingroom: "Amazon Prime"
+      com.google.android.youtube.tv: "YouTube"
+      com.plexapp.android: "Plex"
+      com.spotify.tv.android: "Spotify"
+      tv.twitch.android.app: "Twitch"
+    turn_on_command: "input keyevent 3"
+    turn_off_command: "input keyevent 223"
+
+# Samsung TV (UE55RU8000)
+  - platform: samsungtv
+    host: 10.0.0.13
+    name: Samsung TV
+    mac: !secret samsung_mac_adr
+    port: 8001
+
+# Sitting Room Kodi
+  - platform: kodi
+    host: 10.0.0.6
+    name: "Kodi (Sitting Room)"
+
+# Bedroom Kodi
+  - platform: kodi
+    host: 10.0.0.7
+    name: "Kodi (Bedroom)"

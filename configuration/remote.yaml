@@ -1,0 +1,4 @@
+# Logitech Harmony Hub
+  - platform: harmony
+    name: Harmony Hub
+    host: 10.0.0.12

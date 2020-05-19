@@ -1,0 +1,77 @@
+# LED Candles - Sitting Room
+  - platform: template
+    switches:
+      led_candles:
+        value_template: "{% if is_state('input_boolean.led_candles', 'on') %}on{% else %}off{% endif %}"
+        turn_on:
+        - service: script.turn_on
+          entity_id: script.candles_on
+        - service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.led_candles
+        turn_off:
+        - service: script.turn_on
+          entity_id: script.candles_off
+        - service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.led_candles
+
+# Receiver - Sitting Room (Pioneer VSX-932)
+  - platform: template
+    switches:
+        
+        # Playstation 4 Harmony Activity
+        ps4:
+          value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Play PS4') }}"
+          turn_on:
+            service: remote.turn_on
+            data:
+              entity_id: remote.harmony_hub
+              activity: 'Play PS4'
+          turn_off:
+            service: remote.turn_on
+            data:
+              entity_id: remote.harmony_hub
+              activity: 'PowerOff'
+        
+        # Power Everything Off Harmony Activity
+        harmonyoff:
+          value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'PowerOff') }}"
+          turn_on:
+            service: remote.turn_on
+            data:
+              entity_id: remote.harmony_hub
+              activity: 'PowerOff'
+          turn_off:
+            service: remote.turn_on
+            data:
+              entity_id: remote.harmony_hub
+              activity: 'PowerOff'
+        
+        # Shield TV Harmony Activity
+        shield:
+          value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Shield') }}"
+          turn_on:
+            service: remote.turn_on
+            data:
+              entity_id: remote.harmony_hub
+              activity: 'Shield'
+          turn_off:
+            service: remote.turn_on
+            data:
+              entity_id: remote.harmony_hub
+              activity: 'PowerOff'
+            
+        # Smart TV Harmony Activity
+        smart_tv:
+          value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Smart TV') }}"
+          turn_on:
+            service: remote.turn_on
+            data:
+              entity_id: remote.harmony_hub
+              activity: 'Smart TV'
+          turn_off:
+            service: remote.turn_on
+            data:
+              entity_id: remote.harmony_hub
+              activity: 'PowerOff'

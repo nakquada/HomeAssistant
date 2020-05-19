@@ -1,0 +1,13 @@
+  - host: 10.0.0.250
+    username: !secret pve_user
+    password: !secret pve_pass
+    port: 8006
+    verify_ssl: false
+    realm: pve
+    nodes:
+      - node: Proxmox
+        vms:
+          - 100
+          - 102
+          - 103
+          - 105

@@ -1,0 +1,39 @@
+# Sitting Room Chandelier
+  - platform: group
+    name: Sitting Room Light
+    entities:
+      - light.sr1
+      - light.sr2
+      - light.sr3
+      - light.sr4
+      - light.sr5
+
+# Front Porch Lights
+  - platform: group
+    name: Front Porch
+    entities:
+      - light.fp1
+      - light.fp2
+
+
+# Kitchen Spots
+  - platform: group
+    name: Kitchen Light
+    entities:
+      - light.k1
+      - light.k2
+      - light.k3
+
+# Bathroom Spots
+  - platform: group
+    name: Bathroom Lights
+    entities:
+      - light.wc1_spot
+      - light.wc2_spot
+
+# Bedroom Lamps
+  - platform: group
+    name: Bedroom Lamps
+    entities:
+      - light.terri_bedside_lamp
+      - light.blaith_bedside_lamp

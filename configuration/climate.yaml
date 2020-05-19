@@ -1,0 +1,34 @@
+# Oil Heating / Boiler Stove
+
+  - platform: generic_thermostat
+    name: Heating
+    heater: switch.heating
+    target_sensor: sensor.average_temp
+    min_temp: 16
+    max_temp: 27
+    min_cycle_duration:
+      minutes: 5
+    target_temp: 18
+    ac_mode: false
+    away_temp: 16
+    cold_tolerance: 0.3
+    hot_tolerance: 0.3
+    precision: 0.5
+
+
+
+# Immersion / Hot Water
+
+  - platform: generic_thermostat
+    name: Hot Water
+    heater: switch.immersion
+    target_sensor: sensor.hot_water_temp
+    min_temp: 40
+    max_temp: 65
+    min_cycle_duration:
+      minutes: 5
+    target_temp: 55
+    # away_temp: 30
+    cold_tolerance: 0.3
+    hot_tolerance: 0.3
+    precision: 0.5

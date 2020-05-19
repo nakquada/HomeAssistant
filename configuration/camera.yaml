@@ -1,0 +1,8 @@
+# Back Yard Camera
+  - platform: onvif
+    host: 10.0.0.21
+    name: Back Yard
+    username: admin
+    password: admin
+    port: 8080
+    extra_arguments: -pred 1

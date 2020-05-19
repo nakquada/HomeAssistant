@@ -1,0 +1,43 @@
+# Harmony Hub Activity Sensor
+  - platform: template
+    sensors:
+      harmony_activity:
+        value_template: >
+          {% if is_state("remote.harmony_hub", 'on') %}
+            {{ states.remote.harmony_hub.attributes.current_activity }}
+          {% else %}
+            PowerOff
+          {% endif %}
+
+
+# Weather prediction
+  - platform: yr
+
+
+# Temperature Sensors - Average Temp
+  - platform: min_max
+    type: mean
+    name: "Average Temp"
+    entity_ids:
+      - sensor.dining_room_temp
+      - sensor.bedroom_temp
+      - sensor.bathroom_temp
+
+
+# Humidity Sensors - Average Humidity
+  - platform: min_max
+    type: mean
+    name: "Average Humidity"
+    entity_ids:
+      - sensor.dining_room_humidity
+      - sensor.bedroom_humidity
+      - sensor.bathroom_humidity
+
+## TVHeadend Recording Sensor
+  - platform: tvh_rec
+    name: rec
+    username: !secret tvhrec_user
+    password: !secret tvhrec_pass
+    url: http://10.0.0.3:9981
+    scan_interval: 600
+    count: 3
