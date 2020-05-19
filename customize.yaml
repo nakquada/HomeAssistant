@@ -1,0 +1,49 @@
+# Customisation here for overwriting default icons for entities
+
+switch.ps4:
+  icon: mdi:playstation
+switch.shield:
+  icon: mdi:google-controller
+switch.tv:
+  icon: mdi:television-classic
+switch.candles:
+  icon: mdi:candles
+switch.bluray:
+  icon: mdi:disc
+media_player.samsungtv:
+  friendly_name: Samsung TV
+light.blaith_bedside_lamp:
+  icon: mdi:lamp
+light.terri_bedside_lamp:
+  icon: mdi:lamp
+switch.heating:
+  friendly_name: Heating
+  icon: mdi:fire
+switch.boiler:
+  icon: mdi:fire
+switch.immersion:
+  icon: mdi:water
+switch.heating_switch:
+  icon: mdi:fire
+switch.immersion_switch:
+  icon: mdi:water
+light.kitchen_light:
+  icon: mdi:vanity-light
+light.kitchen_lamp:
+  icon: mdi:lamp
+light.dining_room_lamp:
+  icon: mdi:lamp
+switch.table_lamp:
+  icon: mdi:floor-lamp
+switch.yard_light:
+  icon: mdi:coach-lamp
+light.front_porch:
+  icon: mdi:coach-lamp
+light.sitting_room_light:
+  icon: mdi:vanity-light
+media_player.shield_android:
+  icon: mdi:set-top-box
+person.terri:
+  entity_picture: /local/terri.jpg
+person.blaith:
+  picture_entity: /local/blaith.jpg

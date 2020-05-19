@@ -1,0 +1,66 @@
+# Location Settings
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 70
+  unit_system: metric
+  time_zone: UTC
+
+# Customization file
+  customize: !include customize.yaml
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Weather prediction
+weather: !include configuration/weather.yaml
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  base_url: !secret base_url
+
+
+# MAIN INTEGRATIONS
+camera: !include configuration/camera.yaml ## Outdoor Cameras
+hue: !include configuration/hue.yaml ## Philips Hue Bridge
+remote: !include configuration/remote.yaml ## Logitech Harmony Remote
+media_player: !include configuration/media_player.yaml ## Media Players
+light: !include configuration/light.yaml # Light Groups
+group: !include configuration/groups.yaml # Groups
+automation: !include automations.yaml # All Automations
+script: !include scripts.yaml # Scripts
+switch: !include configuration/switches.yaml
+input_boolean: !include configuration/input_boolean.yaml
+sensor: !include configuration/sensor.yaml
+scene: !include scenes.yaml
+climate: !include configuration/climate.yaml
+custom_icons:
+
+## Spotify
+spotify:
+  client_id: !secret spotify_client
+  client_secret: !secret spotify_secret
+
+
+## Group Echo Dot devices for Alexa TTS at same time
+notify:
+  - name: alexa_media_home
+    platform: group
+    services:
+      - service: alexa_media_kitchen_echo_dot
+      - service: alexa_media_sitting_room_echo_dot
+      - service: alexa_media_studio_echo_dot
+
+## Group mobile phones for notifications when washer/dryer, etc are finished.
+  - name: mobile_app_phones
+    platform: group
+    services:
+      - service: mobile_app_mi_9t
+      - service: mobile_app_blaithins_iphone
+
+# Proxmox VE on Home Server
+proxmoxve: !include configuration/proxmox.yaml

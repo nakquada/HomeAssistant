@@ -1,0 +1,97 @@
+- id: '1586011184717'
+  alias: Washing Machine Finished - Notification
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.washing_machine_running
+    for: 00:03
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      message: Washing machine cycle finished!
+      title: '*Washing Machine Done*'
+    service: notify.mobile_app_phones
+  - data:
+      data:
+        type: announce
+      message: The Washing Machine Has Finished
+    data_template:
+      data:
+        type: tts
+      message: The washing machine is finished
+    service: notify.alexa_media_home
+- id: '1586012096887'
+  alias: Turn on the lights when the sun sets
+  description: ''
+  trigger:
+  - event: sunset
+    offset: -00:30:00
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: group.automatic
+    service: homeassistant.turn_on
+- id: '1586012527405'
+  alias: Turn off the lights when the sun rises
+  description: ''
+  trigger:
+  - event: sunrise
+    offset: -00:30:00
+    platform: sun
+  condition: []
+  action:
+  - data: {}
+    entity_id: group.automatic
+    service: homeassistant.turn_off
+- id: '1586012657542'
+  alias: Turn off heating if cylinder water too hot (>60c)
+  description: ''
+  trigger:
+  - above: '60'
+    entity_id: sensor.hot_water_temp
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: switch.heating
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: switch.heating
+    service: switch.turn_off
+- id: '1586012748094'
+  alias: Turn off hot water after 30 mins automatically
+  description: ''
+  trigger:
+  - entity_id: switch.immersion
+    for: 00:30:00
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.immersion
+    service: switch.turn_off
+- id: '1586012847948'
+  alias: Tumble Dryer Finished - Notification
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.tumble_dryer_running
+    for: 00:03
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      data:
+        type: announce
+      message: The Tumble Dryer has finished
+    service: notify.alexa_media_home
+  - data:
+      message: Tumble dryer cycle finished!
+      title: '*Tumble Dryer Done*'
+    service: notify.mobile_app_phones

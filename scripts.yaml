@@ -1,0 +1,20 @@
+'candles_on':
+  alias: Candles On
+  sequence:
+  - data:
+      command: Power On
+      delay_secs: 0.6
+      num_repeats: 3
+      device: 53672268
+      entity_id: remote.harmony_hub
+    service: remote.send_command
+'candles_off':
+  alias: Candles Off
+  sequence:
+  - data:
+      command: Power Off
+      delay_secs: 0.6
+      num_repeats: 3
+      device: 53672268
+      entity_id: remote.harmony_hub
+    service: remote.send_command

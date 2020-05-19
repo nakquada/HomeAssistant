@@ -1,0 +1,25 @@
+- id: '1588421762678'
+  name: Office Purple
+  entities:
+    light.pc_lights:
+      brightness: 255
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Desk Lights
+      hs_color:
+      - 283.009
+      - 88.627
+      icon: mdi:string-lights
+      max_mireds: 500
+      min_mireds: 153
+      rgb_color:
+      - 191
+      - 29
+      - 255
+      state: 'on'
+      supported_features: 63
+      xy_color:
+      - 0.3
+      - 0.12
