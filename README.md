@@ -1,7 +1,7 @@
 # [WIP] Nakquada's Tiny Home Lovelace Config 
 Thanks for checking this out, I'll update it as I make progress
 
-![Home Screen](/Screens/Home & Heating.png)
+![Home Screen](/Screens/Home.png)
 
 
 ## Installation Requirements
