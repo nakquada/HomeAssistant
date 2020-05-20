@@ -1,7 +1,10 @@
 # [WIP] Nakquada's Tiny Home Lovelace Config 
 Thanks for checking this out, I'll update it as I make progress
 
-## Installation
+![Home Screen](/Screens/Home.png)
+
+
+## Installation Requirements
 Please use HACS to install the following Plugins & Integrations:
 
 * **Integration** - Alexa Media Player
@@ -21,7 +24,7 @@ Please use HACS to install the following Plugins & Integrations:
 * **Plugins** - Vertical Stack in Card
 * **Theme** - Based on *'Google Dark Theme'* by JuanMTech
 
-Addons Used
+Addons Used (via Home Assistant Supervisor and Addon-Store)
 
 * **ADB - Android Debug Bridge**
 * **ESPHome**
