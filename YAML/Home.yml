@@ -12,7 +12,7 @@ cards:
             name: Yard Light
         heading:
           - Our Home
-        link: /lovelace/Heating
+        link: /lovelace/Home
         style: |
           ha-card .heading {
             font-size: 3.5em;
