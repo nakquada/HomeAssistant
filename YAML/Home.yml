@@ -1,0 +1,237 @@
+type: vertical-stack
+cards:
+  - cards:
+      - background: url(/local/home.jpg
+        color: white
+        entities:
+          - entity: sensor.average_humidity
+            name: Humidity
+          - entity: sensor.average_temp
+            name: Ambient Temp
+          - entity: switch.yard_light
+            name: Yard Light
+        heading:
+          - Our Home
+        link: /lovelace/Heating
+        style: |
+          ha-card .heading {
+            font-size: 3.5em;
+            margin: 40px;
+            color: black;
+            font-family: 'Amatic SC', cursive;
+          }
+          ha-card .overlay-strip {
+            font-size: 1em;
+            font-family: 'Roboto';
+            font-weight: 900;
+            background: none;
+          }
+        type: 'custom:banner-card'
+      - control:
+          hvac:
+            another_mode: false
+            boost:
+              icon: 'mdi:fire'
+              name: Boost
+            heat:
+              icon: 'mdi:fire'
+              name: HEATING AUTO
+            'off':
+              icon: 'mdi:power'
+              name: HEATING OFF
+        entity: climate.heating
+        hide:
+          state: true
+          temperature: true
+        icon: false
+        name: false
+        step_layout: row
+        step_size: 0.5
+        style: |
+          ha-card {
+            --st-font-size-xl: 70px;
+            margin-top: 10px;
+          }
+          ha-card .modes {
+            margin-left: 50px;
+            margin-right: 50px;
+            }
+          ha-card .current-wrapper {
+            font-family: 'Roboto';
+            font-weight: 500;
+            color: orange;
+          }
+          ha-card .mode-item {
+            color: grey;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 5px;
+            border-radius: 12px;
+            font-weight: bold;
+            background: none;
+            border: 2px solid grey;
+          }
+          ha-card .mode-item.active {
+            background: none;
+            color: orange;
+            border: 2px solid orange;
+          }
+          ha-card .mode-item.active:hover {
+            background: none;
+          }
+          ha-card .mode-item:hover {
+            background: orange;
+            color: #171717;
+          }
+        type: 'custom:simple-thermostat'
+      - cards:
+          - entity: switch.immersion
+            icon: 'mdi:water'
+            name: Immersion
+            show_state: true
+            state:
+              - styles:
+                  card:
+                    - filter: opacity(50%)
+                  icon:
+                    - filter: grayscale(100%)
+                value: 'off'
+            styles:
+              card:
+                - font-weight: bold;
+              grid:
+                - grid-template-areas: '"i" "n" "s"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr min-content min-content
+              icon:
+                - width: 35%
+                - margin: 5px
+              img_cell:
+                - align-self: start
+                - text-align: start
+              name:
+                - font-family: Amatic SC
+                - font-weight: bold
+                - font-size: 28px
+                - padding-bottom: 10px
+                - padding-top: 5px
+            type: 'custom:button-card'
+          - color: orange
+            entity: switch.heating
+            icon: 'mdi:fire'
+            name: Oil Burner
+            show_state: true
+            state:
+              - styles:
+                  card:
+                    - filter: opacity(50%)
+                  icon:
+                    - filter: grayscale(100%)
+                value: 'off'
+            styles:
+              card:
+                - font-weight: bold;
+              grid:
+                - grid-template-areas: '"i" "n" "s"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr min-content min-content
+              icon:
+                - width: 35%
+                - margin: 5px
+              img_cell:
+                - align-self: start
+                - text-align: start
+              name:
+                - font-family: Amatic SC
+                - font-weight: bold
+                - font-size: 28px
+                - padding-bottom: 10px
+                - padding-top: 5px
+            type: 'custom:button-card'
+          - color: orange
+            entity: sensor.hot_water_temp
+            icon: 'mdi:water-pump'
+            name: Hot Water
+            show_state: true
+            styles:
+              card:
+                - font-weight: bold;
+              grid:
+                - grid-template-areas: '"i" "n" "s"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr min-content min-content
+              icon:
+                - width: 35%
+                - margin: 5px
+              img_cell:
+                - align-self: start
+                - text-align: start
+              name:
+                - font-family: Amatic SC
+                - font-weight: bold
+                - font-size: 28px
+                - padding-bottom: 10px
+                - padding-top: 5px
+            type: 'custom:button-card'
+        type: horizontal-stack
+    style: |
+      ha-card {
+        margin-top: 20px;
+        padding-bottom: 10px;
+      }
+    type: 'custom:vertical-stack-in-card'
+  - cards:
+      - color_thresholds:
+          - color: '#89cff0'
+            value: 18
+          - color: orange
+            value: 21
+          - color: red
+            value: 24
+        decimals: 1
+        entities:
+          - sensor.dining_room_temp
+        fill: true
+        font_size: 80
+        icon: 'mdi:fridge-outline'
+        line_color: var(--accent-color)
+        line_width: 15
+        name: Kitchen
+        show:
+          labels: false
+        type: 'custom:mini-graph-card'
+      - color_thresholds:
+          - color: '#89cff0'
+            value: 20
+          - color: orange
+            value: 22
+          - color: red
+            value: 24
+        decimals: 1
+        entities:
+          - sensor.bedroom_temp
+        fill: true
+        font_size: 80
+        icon: 'mdi:bed-king-outline'
+        line_color: var(--accent-color)
+        line_width: 15
+        name: Bedroom
+        type: 'custom:mini-graph-card'
+      - color_thresholds:
+          - color: '#89cff0'
+            value: 20
+          - color: orange
+            value: 22
+          - color: red
+            value: 24
+        decimals: 1
+        entities:
+          - sensor.bathroom_sensor_temperature
+        fill: true
+        font_size: 80
+        icon: 'mdi:toilet'
+        line_color: var(--accent-color)
+        line_width: 15
+        name: Bathroom
+        type: 'custom:mini-graph-card'
+    type: horizontal-stack

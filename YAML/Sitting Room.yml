@@ -1,0 +1,150 @@
+cards:
+  - background: url(/local/sittingroom.jpg
+    color: white;
+    heading: Sitting Room
+    link: /lovelace/sitting-room
+    style: |
+      ha-card .heading {
+        font-size: 3.5em;
+        margin: 40px;
+        padding-bottom: 10px;
+        color: black;
+        font-family: 'Amatic SC', cursive;
+      }
+      ha-card .overlay-strip {
+          font-size: 1em;
+          font-family: 'Roboto';
+          font-weight: 900;
+          background: none;
+      }
+    type: 'custom:banner-card'
+  - cards:
+      - color: orange
+        entity: switch.sitting_room_lamp
+        icon: 'mdi:lamp'
+        name: Lamp
+        show_state: false
+        state:
+          - styles:
+              icon:
+                - filter: grayscale(25%)
+            value: 'off'
+        style: |
+          ha-card {
+            margin-bottom: 10px;
+          }
+        styles:
+          card:
+            - font-weight: bold;
+          grid:
+            - grid-template-areas: '"i" "n" "s"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: 1fr min-content min-content
+          icon:
+            - width: 35%
+            - margin: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+          name:
+            - font-family: Amatic SC
+            - font-weight: bold
+            - font-size: 28px
+            - padding-bottom: 10px
+            - padding-top: 5px
+        type: 'custom:button-card'
+      - color: orange
+        entity: light.sitting_room_light
+        icon: 'mdi:vanity-light'
+        name: Lights
+        show_state: false
+        state:
+          - styles:
+              icon:
+                - filter: grayscale(100%)
+            value: 'off'
+        styles:
+          card:
+            - font-weight: bold;
+          grid:
+            - grid-template-areas: '"i" "n" "s"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: 1fr min-content min-content
+          icon:
+            - width: 35%
+            - margin: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+          name:
+            - font-family: Amatic SC
+            - font-weight: bold
+            - font-size: 28px
+            - padding-bottom: 10px
+            - padding-top: 5px
+        type: 'custom:button-card'
+      - color: orange
+        entity: switch.salt_lamp
+        name: Salt Lamp
+        show_state: false
+        state:
+          - styles:
+              icon:
+                - filter: grayscale(100%)
+            value: 'off'
+        styles:
+          card:
+            - font-weight: bold;
+          grid:
+            - grid-template-areas: '"i" "n" "s"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: 1fr min-content min-content
+          icon:
+            - width: 35%
+            - margin: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+          name:
+            - font-family: Amatic SC
+            - font-weight: bold
+            - font-size: 28px
+            - padding-bottom: 10px
+            - padding-top: 5px
+        type: 'custom:button-card'
+      - color: orange
+        entity: switch.led_candles
+        icon: 'mdi:candle'
+        name: Candles
+        show_state: false
+        state:
+          - styles:
+              icon:
+                - filter: grayscale(100%)
+            value: 'off'
+        styles:
+          card:
+            - font-weight: bold;
+          grid:
+            - grid-template-areas: '"i" "n" "s"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: 1fr min-content min-content
+          icon:
+            - width: 35%
+            - margin: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+          name:
+            - font-family: Amatic SC
+            - font-weight: bold
+            - font-size: 28px
+            - padding-bottom: 10px
+            - padding-top: 5px
+        type: 'custom:button-card'
+    type: horizontal-stack
+style: |
+  ha-card  {
+    margin-top: 20px;
+  }
+type: 'custom:vertical-stack-in-card'

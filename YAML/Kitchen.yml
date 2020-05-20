@@ -1,0 +1,75 @@
+type: vertical-stack
+cards:
+  - background:
+      - url("/local/kitchen.jpg")
+    color: white
+    entities:
+      - entity: light.kitchen_lamp
+        name: Kitchen Lamp
+      - entity: light.kitchen_light
+        name: Kitchen Lights
+      - entity: sensor.dining_room_temp
+        name: Temperature
+    heading:
+      - Kitchen
+    link: /lovelace/kitchen
+    style: |
+      ha-card  {
+        margin-top: 20px;
+      }
+      ha-card .heading {
+        font-size: 3.5em;
+        margin: 40px;
+        color: black;
+        font-family: 'Amatic SC', cursive;
+      }
+      ha-card .overlay-strip {
+        font-size: 1em;
+        font-family: 'Roboto';
+        font-weight: 900;
+        background: none;
+      }
+    type: 'custom:banner-card'
+  - entities:
+      - entity: light.kitchen_lamp
+        hide_when_off: false
+        name: Lamp
+        type: 'custom:slider-entity-row'
+      - entity: light.kitchen_light
+        hide_when_off: false
+        name: Lights
+        type: 'custom:slider-entity-row'
+    show_header_toggle: false
+    style: |
+      ha-card {
+        overflow: hidden;
+        margin-bottom: 10px;
+        margin-top: 10px;
+      }
+    type: entities
+  - entities:
+      - entity: light.dining_room_lamp
+        name: Dining Room Lamp
+        type: 'custom:slider-entity-row'
+      - entity: light.dining_room_light
+        hide_when_off: false
+        name: Dining Room Light
+        type: 'custom:slider-entity-row'
+      - entity: switch.table_lamp
+        hide_when_off: true
+        name: Table Lamp
+    show_header_toggle: false
+    style: |
+      ha-card {
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+    type: entities
+  - artwork: cover
+    entity: media_player.spotify
+    style: |
+      ha-card {
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+    type: 'custom:mini-media-player'

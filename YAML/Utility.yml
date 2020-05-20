@@ -1,0 +1,277 @@
+type: vertical-stack
+cards:
+  - background: url(/local/utility.jpg
+    color: white
+    entities:
+      - entity: binary_sensor.washing_machine_running
+        map_state:
+          'off': Idle
+          'on': Active
+        name: Washing Machine
+      - entity: binary_sensor.tumble_dryer_running
+        map_state:
+          'off': Idle
+          'on': Active
+        name: Tumble Dryer
+      - entity: switch.yard_light
+        name: Yard Light
+    heading:
+      - Utility Room
+    link: /lovelace/utility
+    style: |
+      ha-card  {
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+      ha-card .heading {
+        font-size: 3.5em;
+        margin: 40px;
+        color: black;
+        font-family: 'Amatic SC', cursive;
+      }
+      ha-card .overlay-strip {
+        font-size: 1em;
+        font-family: 'Roboto';
+        font-weight: 900;
+        background: none;
+      }
+    type: 'custom:banner-card'
+  - cards:
+      - color_thresholds:
+          - color: '#89cff0'
+            value: 500
+          - color: orange
+            value: 1200
+          - color: red
+            value: 2000
+        decimals: 1
+        entities:
+          - sensor.washing_machine_power
+        fill: true
+        font_size: 80
+        icon: 'mdi:washing-machine'
+        line_color: var(--accent-color)
+        line_width: 15
+        name: Washing Machine
+        show:
+          labels: false
+        style: |
+          ha-card {
+            margin-bottom: 10px;
+            margin-right: 5px;
+          }
+        type: 'custom:mini-graph-card'
+      - color_thresholds:
+          - color: '#89cff0'
+            value: 500
+          - color: orange
+            value: 1200
+          - color: red
+            value: 2000
+        decimals: 1
+        entities:
+          - sensor.tumble_dryer_power
+        fill: true
+        font_size: 80
+        icon: 'mdi:tumble-dryer'
+        line_color: var(--accent-color)
+        line_width: 15
+        name: Tumble Dryer
+        show:
+          labels: false
+        style: |
+          ha-card {
+            margin-bottom: 10px;
+            margin-left: 5px;
+          }
+        type: 'custom:mini-graph-card'
+    type: horizontal-stack
+  - cards:
+      - color_thresholds:
+          - color: '#89cff0'
+            value: 500
+          - color: orange
+            value: 1200
+          - color: red
+            value: 2000
+        decimals: 1
+        entities:
+          - sensor.washing_machine_daily_energy_use
+        fill: true
+        font_size: 80
+        hours_to_show: 24
+        icon: 'mdi:washing-machine'
+        line_color: var(--accent-color)
+        line_width: 15
+        name: Daily Use
+        show:
+          graph: bar
+          icon: false
+          labels: false
+          name: false
+        style: |
+          ha-card {
+            margin-bottom: 10px;
+            margin-right: 5px;
+          }
+        type: 'custom:mini-graph-card'
+      - color_thresholds:
+          - color: '#89cff0'
+            value: 500
+          - color: orange
+            value: 1200
+          - color: red
+            value: 2000
+        decimals: 1
+        entities:
+          - sensor.tumble_dryer_daily_energy_use
+        fill: true
+        font_size: 80
+        hours_to_show: 24
+        icon: 'mdi:tumble-dryer'
+        line_color: var(--accent-color)
+        line_width: 15
+        name: Daily Use
+        show:
+          graph: bar
+          icon: false
+          labels: false
+          name: false
+        style: |
+          ha-card {
+            margin-bottom: 10px;
+            margin-left: 5px;
+          }
+        type: 'custom:mini-graph-card'
+    type: horizontal-stack
+  - cards:
+      - color: orange
+        entity: automation.washing_machine_finished_notification
+        icon: 'mdi:message'
+        name: Wash Notify
+        show_state: true
+        state:
+          - styles:
+              card:
+                - filter: opacity(50%)
+              icon:
+                - filter: grayscale(100%)
+            value: 'off'
+        styles:
+          card:
+            - font-size: 15px
+            - font-weight: bold;
+          grid:
+            - grid-template-areas: '"i" "n" "s"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: 1fr min-content min-content
+          icon:
+            - width: 25%
+            - margin: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+          name:
+            - font-family: Amatic SC
+            - font-weight: bold
+            - font-size: 24px
+            - padding-bottom: 10px
+        type: 'custom:button-card'
+      - color: orange
+        entity: automation.tumble_dryer_finished_notification
+        icon: 'mdi:message'
+        name: Dry Notify
+        show_state: true
+        state:
+          - styles:
+              card:
+                - filter: opacity(50%)
+              icon:
+                - filter: grayscale(100%)
+            value: 'off'
+        styles:
+          card:
+            - font-size: 15px
+            - font-weight: bold;
+          grid:
+            - grid-template-areas: '"i" "n" "s"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: 1fr min-content min-content
+          icon:
+            - width: 25%
+            - margin: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+          name:
+            - font-family: Amatic SC
+            - font-weight: bold
+            - font-size: 24px
+            - padding-bottom: 10px
+        type: 'custom:button-card'
+      - color: orange
+        entity: switch.washing_machine
+        icon: 'mdi:power'
+        name: Wash Switch
+        show_state: true
+        state:
+          - styles:
+              card:
+                - filter: opacity(50%)
+              icon:
+                - filter: grayscale(100%)
+            value: 'off'
+        styles:
+          card:
+            - font-size: 15px
+            - font-weight: bold;
+          grid:
+            - grid-template-areas: '"i" "n" "s"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: 1fr min-content min-content
+          icon:
+            - width: 25%
+            - margin: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+          name:
+            - font-family: Amatic SC
+            - font-weight: bold
+            - font-size: 24px
+            - padding-bottom: 10px
+        type: 'custom:button-card'
+      - color: orange
+        entity: switch.tumble_dryer
+        icon: 'mdi:power'
+        name: Dryer Switch
+        show_state: true
+        state:
+          - styles:
+              card:
+                - filter: opacity(50%)
+              icon:
+                - filter: grayscale(100%)
+            value: 'off'
+        styles:
+          card:
+            - font-size: 15px
+            - font-weight: bold;
+          grid:
+            - grid-template-areas: '"i" "n" "s"'
+            - grid-template-columns: 1fr
+            - grid-template-rows: 1fr min-content min-content
+          icon:
+            - width: 25%
+            - margin: 5px
+          img_cell:
+            - align-self: start
+            - text-align: start
+          name:
+            - font-family: Amatic SC
+            - font-weight: bold
+            - font-size: 24px
+            - padding-bottom: 10px
+        type: 'custom:button-card'
+    type: horizontal-stack
+
